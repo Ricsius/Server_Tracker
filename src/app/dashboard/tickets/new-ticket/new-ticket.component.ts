@@ -19,16 +19,20 @@ export class NewTicketComponent {
   @Output() add = new EventEmitter<Ticket>();
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
   //private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  title = '';
+  text = '';
 
-  onSubmit(title: string, request: string) {
+  onSubmit() {
     const ticket: Ticket = {
       id: '',
       status: 'open',
-      title: title,
-      request: request
+      title: this.title,
+      request: this.text
     };
 
     this.add.emit(ticket);
+    //this.title = '';
+    //this.text = '';
     this.form?.nativeElement.reset();
     //this.form()?.nativeElement.reset();
   }
